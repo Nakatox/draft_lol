@@ -38,9 +38,8 @@ $app->registerCommand('Draft', function (array $argv) use ($app) {
                 $ItemOfChamp = '';
                 foreach($value->popularItems as $item){
                     $ItemOfChamp .= $item->name . ' ; ';
-                    // echo $item->name;
                 }
-                $resultAdd = $championGiven.' '.': '.'[PopularItems]'.' => '. $ItemOfChamp."\n"."\n" ;
+                $resultAdd = $championGiven.' '.': '.'[PopularItems] => '. $ItemOfChamp.' [Boots] => '.$value->boot->name."\n"."\n" ;
                 $result .= $resultAdd;
             }
         }
