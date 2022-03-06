@@ -30,6 +30,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+        working-directory: scrapping
 
       - name: Run script
         run: npm run start
+        working-directory: scrapping
