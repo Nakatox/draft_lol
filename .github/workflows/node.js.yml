@@ -35,7 +35,7 @@ jobs:
         working-directory: scrapping
 
       - name: push new champions data
-      - uses: mikeal/publish-to-github-action@master
+        uses: mikeal/publish-to-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: "master"
