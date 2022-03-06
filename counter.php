@@ -1,6 +1,6 @@
 <?php 
 
-require_once('./getDataReadable.php');
+require(__DIR__ .'/getDataReadable.php');
 
 
 function counters(String $top,String $jungle,String $mid,String $adc,String $support){
@@ -8,11 +8,11 @@ function counters(String $top,String $jungle,String $mid,String $adc,String $sup
     $data = returnData(); // get pro match stat
 
     $champions = [ // all champion
-        ucfirst($top),
-        ucfirst($jungle),
-        ucfirst($mid),
-        ucfirst($adc),
-        ucfirst($support)
+        strtolower($top),
+        strtolower($jungle),
+        strtolower($mid),
+        strtolower($adc),
+        strtolower($support)
     ];
 
     $counter = []; // set counters array
@@ -22,7 +22,7 @@ function counters(String $top,String $jungle,String $mid,String $adc,String $sup
         $allCounters = [];
 
         foreach ($data as $game) { // on each game
-            if ($game[1][$index] === $champion) {
+            if (strtolower($game[1][$index]) === $champion) {
                 if(array_key_exists($game[0][$index], $defeatCounter)){
                     $defeatCounter[$game[0][$index]] = $defeatCounter[$game[0][$index]] + 1;
                 } else {
@@ -63,7 +63,6 @@ function counters(String $top,String $jungle,String $mid,String $adc,String $sup
     return $counter;
 }
 
-$result = counters("janna", "Viego", "ahri", "Samira", "Leona"); // function test
-var_dump($result);
-
+// $result = counters("", "Viego", "ahri", "Samira", "Leona"); // function test
+// var_dump($result);
 ?>
