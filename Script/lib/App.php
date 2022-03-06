@@ -38,7 +38,7 @@ class App
 
         $command = $this->getCommand($command_name);
         if ($command === null) {
-            $this->getPrinter()->display("ERROR: Command \"$command_name\" not found.");
+            $this->getPrinter()->display("ERROR: Command \"$command_name\" not found. '\n \n");
             exit;
         }
 

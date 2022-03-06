@@ -9,7 +9,7 @@ function findCounterOfChamp($roleId, $champion) {
     $allCounters = []; // all counters from lane
 
     foreach ($data as $game) { // on each game find when champ lsoe the game
-        if (strtolower($game[1][$roleId]) === $champion) {
+        if (strtolower($game[1][$roleId]) === strtolower($champion)) {
             if(array_key_exists($game[0][$roleId], $defeatCounter)){
                 $defeatCounter[$game[0][$roleId]] = $defeatCounter[$game[0][$roleId]] + 1;
             } else {
@@ -110,25 +110,7 @@ function allLaneCounter(String $champion) {
 
         $answer = findCounterOfChamp($i, $champion);
 
-        switch (strtolower($laneCount)) {
-            case 0:
-                $roleName = "top";
-                break;
-            case 1:
-                $roleName = "jungle";
-                break;
-            case 2:
-                $roleName = "mid";
-                break;
-            case 3:
-                $roleName = "adc";
-                break;
-            case 4:
-                $roleName = "support";
-                break;
-        }
-
-        array_push($counter, [$roleName => $answer]);
+        array_push($counter, $answer);
         $laneCount += 1;
     }
 
@@ -138,8 +120,8 @@ function allLaneCounter(String $champion) {
 $result = counters("gwen", "nidalee", "ahri", "Samira", "Renata Glasc"); // function test
 $result2 = simpleCounter("janna", "top"); // function test
 $result3 = allLaneCounter("janna"); // function test
-var_dump($result);
-var_dump($result2);
-var_dump($result3);
+// var_dump($result);
+// var_dump($result2);
+// var_dump($result3);
 
 ?>
