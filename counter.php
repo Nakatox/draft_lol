@@ -25,18 +25,21 @@ function findCounterOfChamp($roleId, $champion) {
         while (true) { // get all counters
 
             if (count($defeatCounter) > 0) {
+
                 $newHighestDefeat = max($defeatCounter);
                 $hightestChampion = array_search($hightestDefeat, $defeatCounter);
+
                 if ($hightestDefeat === $newHighestDefeat){
+
                     array_push($allCounters, $hightestChampion);
                     unset($defeatCounter[$hightestChampion]);
-                } else {
+
+                }else {
                     break;
                 }
             } else {
                 break;
             }
-
         }
         return $allCounters;
     } else {

@@ -52,7 +52,12 @@ class ChampionsBot {
 					})
 				)
 
-				this.champions.push({ id: champion.id, name: champion.name, mythics: this.mythicItems, popularItems: this.items })
+				this.bootSelector = ".champion-page_top-bar .champion-skills .top-items .item"
+				this.boot = await this.page.$$eval(this.bootSelector, (elements) => {
+					return { name: elements[0].firstElementChild.firstElementChild.getAttribute("alt") }
+				})
+
+				this.champions.push({ id: champion.id, name: champion.name, mythics: this.mythicItems, popularItems: this.items, boot: this.boot })
 			} catch (error) {
 				console.log(error)
 			}

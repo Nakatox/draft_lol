@@ -1,6 +1,6 @@
 #!/usr/bin/php
-<?php
 
+<?php
 if (php_sapi_name() !== 'cli') {
     exit;
 }
@@ -28,10 +28,24 @@ $app->registerCommand('Draft', function (array $argv) use ($app) {
         return $response;
     }
 
-    function giveItem ($championGiven ) {
-        
-    }
+    function showItemAndChampion ($championGiven) {
+        $champions = file_get_contents("../scrapping/champions.json");
+        $decoded_json = json_decode($champions, false);
 
+        $result = '';
+        foreach($decoded_json as $value) {
+            if (strtolower($value->name) == strtolower($championGiven)) {
+                $ItemOfChamp = '';
+                foreach($value->popularItems as $item){
+                    $ItemOfChamp .= $item->name . ' ; ';
+                    // echo $item->name;
+                }
+                $resultAdd = $championGiven.' '.': '.'[PopularItems]'.' => '. $ItemOfChamp."\n"."\n" ;
+                $result .= $resultAdd;
+            }
+        }
+        return $result;
+    }
 
     for ($i=0; $i < 5; $i++) {
         switch ($i) {
@@ -111,14 +125,14 @@ $app->registerCommand('Draft', function (array $argv) use ($app) {
     // ------------------------------------------------------------------------------------------
 
     $counterMatchup = counters($top, $jungle, $mid, $adc, $support);
-
+    $stock = '';
     foreach($counterMatchup as $counteredChamp ) {
         foreach($counteredChamp as $champion) {
-            echo $champion . "\n";
+            $stock .= showItemAndChampion($champion);
         }
-
     }
-
+    $app->getPrinter()->display("Here are the champions and items that counter the compo given : \n \n".$stock);
+    // var_dump($stock);
 });
 
 $app->registerCommand('help', function (array $argv) use ($app) {
@@ -126,5 +140,3 @@ $app->registerCommand('help', function (array $argv) use ($app) {
 });
 
 $app->runCommand($argv);
-
-?>
