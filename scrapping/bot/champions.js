@@ -8,7 +8,9 @@ class ChampionsBot {
 		this.puppeteer = require("puppeteer")
 		this.fs = require("fs")
 		this.browser = await this.puppeteer.launch({
-			headless: true
+			headless: true,
+			args: [`--no-sandbox`],
+			slowMo: 50
 		})
 
 		this.page = await this.browser.newPage()
@@ -18,7 +20,7 @@ class ChampionsBot {
 	getAllChampionsNamesAndLinks = async () => {
 		// Enter the credentials
 		await this.page.waitForTimeout(3000)
-		await this.page.click("#qc-cmp2-container .css-bhal5e.css-bhal5e .qc-cmp2-footer .qc-cmp2-summary-buttons button:first-of-type", { delay: 200 })
+		// await this.page.click("#qc-cmp2-container .css-bhal5e.css-bhal5e .qc-cmp2-footer .qc-cmp2-summary-buttons button:first-of-type", { delay: 200 })
 
 		this.championsSelector = ".champion-home-page .champion-list .champion-link"
 		this.championsNamesAndLinks = await this.page.$$eval(this.championsSelector, (elements) =>
@@ -50,8 +52,6 @@ class ChampionsBot {
 					})
 				)
 
-				console.log({ id: champion.id, name: champion.name, mythics: this.mythicItems, popularItems: this.items })
-
 				this.champions.push({ id: champion.id, name: champion.name, mythics: this.mythicItems, popularItems: this.items })
 			} catch (error) {
 				console.log(error)
@@ -66,6 +66,8 @@ class ChampionsBot {
 			return
 		} catch (error) {
 			console.error(error)
+		} finally {
+			await this.browser.close()
 		}
 	}
 }

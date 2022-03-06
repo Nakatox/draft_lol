@@ -2,7 +2,7 @@
 
 function returnData(){
 
-    $file = fopen("data.csv", "r");
+    $file = fopen(__DIR__ ."/data.csv", "r");
     $wintab = [];
     $loosetab = [];
     $games = [];
