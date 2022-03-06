@@ -20,7 +20,7 @@ class ChampionsBot {
 	getAllChampionsNamesAndLinks = async () => {
 		// Enter the credentials
 		await this.page.waitForTimeout(3000)
-		await this.page.click("#qc-cmp2-container .css-bhal5e.css-bhal5e .qc-cmp2-footer .qc-cmp2-summary-buttons button:first-of-type", { delay: 200 })
+		// await this.page.click("#qc-cmp2-container .css-bhal5e.css-bhal5e .qc-cmp2-footer .qc-cmp2-summary-buttons button:first-of-type", { delay: 200 })
 
 		this.championsSelector = ".champion-home-page .champion-list .champion-link"
 		this.championsNamesAndLinks = await this.page.$$eval(this.championsSelector, (elements) =>
