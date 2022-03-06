@@ -8,7 +8,9 @@ class ChampionsBot {
 		this.puppeteer = require("puppeteer")
 		this.fs = require("fs")
 		this.browser = await this.puppeteer.launch({
-			headless: true
+			headless: true,
+			args: [`--no-sandbox`],
+			slowMo: 50
 		})
 
 		this.page = await this.browser.newPage()
