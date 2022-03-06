@@ -5,7 +5,7 @@ require(__DIR__ .'/getDataReadable.php');
 function findCounterOfChamp($roleId, $champion) {
 
     $data = returnData(); // get pro match stat
-    $defeatCounter = []; // defeat by champ counter
+    $defeatCounter = []; // defeat per champ
     $allCounters = []; // all counters from lane
 
     foreach ($data as $game) { // on each game find when champ lsoe the game
