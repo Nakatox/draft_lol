@@ -34,7 +34,6 @@ function counters(String $top,String $jungle,String $mid,String $adc,String $sup
         if (count($defeatCounter) > 0) {
 
             $hightestDefeat = max($defeatCounter);
-            $newHighestDefeat;
     
             while (true) { // get all counters
 
@@ -64,6 +63,7 @@ function counters(String $top,String $jungle,String $mid,String $adc,String $sup
     return $counter;
 }
 
-counters("janna", "Viego", "ahri", "Samira", "Leona"); // function test
+$result = counters("janna", "Viego", "ahri", "Samira", "Leona"); // function test
+var_dump($result);
 
 ?>
