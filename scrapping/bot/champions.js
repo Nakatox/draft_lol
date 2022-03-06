@@ -52,8 +52,6 @@ class ChampionsBot {
 					})
 				)
 
-				console.log({ id: champion.id, name: champion.name, mythics: this.mythicItems, popularItems: this.items })
-
 				this.champions.push({ id: champion.id, name: champion.name, mythics: this.mythicItems, popularItems: this.items })
 			} catch (error) {
 				console.log(error)
@@ -68,6 +66,8 @@ class ChampionsBot {
 			return
 		} catch (error) {
 			console.error(error)
+		} finally {
+			await this.browser.close()
 		}
 	}
 }
