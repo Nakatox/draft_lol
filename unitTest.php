@@ -80,10 +80,10 @@ class DraftTest {
 
 
         $allLaneCounterModel = [
-            ["top"=>[ "Yorick", "Gragas", "Gwen", "Kennen", "Jayce"]],["jungle"=>[ "Jarvan IV"]],["mid"=>[]],["adc"=>[]],["support"=>[ "Rakan", "Leona"]]
+            [ "Yorick", "Gragas", "Gwen", "Kennen", "Jayce"],[ "Jarvan IV"],[],[],[ "Rakan", "Leona"]
         ];
         $allLaneCounterStruct = [
-            ["top"=>[]],["jungle"=>[]],["mid"=>[]],["adc"=>[]],["support"=>[]]
+            [],[],[],[],[]
         ];
         $checkStruct = $this->arrayStructure($allLaneCounterStruct, $allLaneCounterData, $errors);
 

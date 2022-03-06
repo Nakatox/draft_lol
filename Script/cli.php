@@ -209,7 +209,9 @@ $app->registerCommand('all-counter', function (array $argv) use ($app) {
     $champion = strtolower(readline_list_history()[0]) ;
     
     $counterMatchup = allLaneCounter($champion);
-    return printTheCounter($counterMatchup,$app);
+    var_dump($counterMatchup);
+    return;
+    printTheCounter($counterMatchup,$app);
 
 });
 
